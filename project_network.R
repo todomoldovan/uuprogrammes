@@ -23,8 +23,8 @@ library(htmlwidgets)
 ###########################################################
 
 # Read scraped data
-programs <- read.csv("programs2.csv")
-courses <- read.csv("courses2.csv")
+programs <- read.csv("programs_full.csv")
+courses <- read.csv("courses_full.csv")
 
 ###########################################################
 # Preprocessing 
