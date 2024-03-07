@@ -15,7 +15,7 @@ library(reshape2)
 library(htmlwidgets)
 
 load("program_matrix.Rdata")
-programs <- read.csv("programs2.csv")
+programs <- read.csv("programs_full.csv")
 
 # Create nodes data frame
 nodes <- data.frame(id = 1:87, label = programs)
@@ -65,7 +65,7 @@ cluster_df$label <- gsub(" s ", "'s ", cluster_df$label) # Correct apostrophe pl
 nodes <- left_join(nodes, cluster_df, by = "label")
 colnames(nodes)[3] <- "group"
 
-visgraph <- visNetwork(nodes, edges) %>% #main = "Communities of programmes at UU"
+visgraph_communities <- visNetwork(nodes, edges) %>% #main = "Communities of programmes at UU"
   visIgraphLayout(layout = "layout_in_circle") %>%
   visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE, manipulation = FALSE, selectedBy = "group") %>%
   visNodes(font = list(face = "times", size = 30, distance = 50)) %>%
@@ -81,4 +81,4 @@ visgraph <- visNetwork(nodes, edges) %>% #main = "Communities of programmes at U
                   this.setOptions({physics:false});
               }")
 
-saveWidget(visgraph, 'visNetworkGraphCommunities.html', selfcontained = TRUE)
+saveWidget(visgraph_communities, 'visNetworkGraphCommunities.html', selfcontained = TRUE)
